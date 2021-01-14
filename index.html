@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warzone Stats Tracker</title>
+    <!-- CDN Links -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12">
+
+            <!-- Header Start -->
+            <div class="jumbotron text-center">
+                <h1>
+                    Warzone Stats Tracker
+                </h1>
+                <p>
+                    This site is still under construction.
+                </p>
+                <p id="createdBy">
+                    Created by: <a href="https://austindickey.github.io" target="_blank">Austin Dickey</a>
+                </p>
+            </div>
+            <!-- Header End -->
+
+            <!-- Player Form Start -->
+            <div class="row" id="selectBar">
+                <div class="col-lg-4 col-md-3"></div>
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="input-group">
+                        <select class="custom-select" id="platformSelector" aria-label="Example select with button addon">
+                            <option selected>Choose Your Platform</option>
+                            <option value="xbl">Xbox</option>
+                            <option value="psn">Playstation</option>
+                            <option value="battle">Battle.net</option>
+                            <option value="steam">Steam</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button id="submit" class="btn btn-outline-secondary" type="button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-3"></div>
+            </div>
+            <!-- Player Form End -->
+            
+            <!-- Data Return Start -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h4 class="card-header">Your Stats</h4>
+                        <div class="card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h4 class="card-header">Recent Matches</h4>
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Data Return End -->
+
+        </div>
+    </div>
+
+    <!-- JS Files Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/js/widget.js"></script>
+</body>
+</html>
