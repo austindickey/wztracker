@@ -29,24 +29,35 @@
             <!-- Header End -->
 
             <!-- Player Form Start -->
-            <div class="row" id="selectBar">
-                <div class="col-lg-4 col-md-3"></div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="input-group">
-                        <select class="custom-select" id="platformSelector" aria-label="Example select with button addon">
-                            <option selected>Choose Your Platform</option>
-                            <option value="xbl">Xbox</option>
-                            <option value="psn">Playstation</option>
-                            <option value="battle">Battle.net</option>
-                            <option value="steam">Steam</option>
-                        </select>
+            <form>
+                <div class="row" id="selectBar">
+                    <div class="col-lg-4 col-md-3"></div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="input-group">
+                            <select class="custom-select" id="platformSelector" aria-label="Example select with button addon">
+                                <option selected>Choose Your Platform</option>
+                                <option value="xbl">Xbox</option>
+                                <option value="psn">Playstation</option>
+                                <option value="battle">Battle.net</option>
+                                <option value="steam">Steam</option>
+                            </select>
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <input type="username" class="form-control" id="gamertag" placeholder="Enter Your Gamertag">
+                            <!-- <small id="gamertagHelp" class="form-text text-muted">For Activision ID, please include the # and numbers.</small> -->
+                        </div>
+
                         <div class="input-group-append">
                             <button id="submit" class="btn btn-outline-secondary" type="button">Submit</button>
                         </div>
                     </div>
+
+                    <div class="col-lg-4 col-md-3"></div>
                 </div>
-                <div class="col-lg-4 col-md-3"></div>
-            </div>
+            </form>
             <!-- Player Form End -->
             
             <!-- Data Return Start -->
@@ -55,7 +66,7 @@
                     <div class="card">
                         <h4 class="card-header">Your Stats</h4>
                         <div class="card-body">
-
+                            
                         </div>
                     </div>
                 </div>
