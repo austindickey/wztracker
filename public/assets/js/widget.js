@@ -2,7 +2,7 @@ require("dotenv").config()
 const apiKey = process.env.apiKey
 const host = process.env.host
 
-function getPlayerDetails() {
+function getRecentMatches() {
     let platform = $("#platformSelector option:selected").val()
     let gamertag = $("#gamertag").val()
 
@@ -29,5 +29,5 @@ function getPlayerDetails() {
 }
 
 $("#submit").on("click", function() {
-    getPlayerDetails()
+    getRecentMatches()
 })
