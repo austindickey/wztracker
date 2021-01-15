@@ -1,3 +1,7 @@
+require("dotenv").config()
+const apiKey = process.env.apiKey
+const host = process.env.host
+
 function getPlayerDetails() {
     let platform = $("#platformSelector option:selected").val()
     let gamertag = $("#gamertag").val()
@@ -12,8 +16,8 @@ function getPlayerDetails() {
         "url": "https://call-of-duty-modern-warfare.p.rapidapi.com/warzone-matches/" + gamertag + "/" + platform,
         "method": "GET",
         "headers": {
-            "x-rapidapi-key": "1d79a935fbmsh6ce840778fdfc27p1edc1fjsnfd7dbd504b08",
-            "x-rapidapi-host": "call-of-duty-modern-warfare.p.rapidapi.com"
+            "x-rapidapi-key": apiKey,
+            "x-rapidapi-host": host
         }
     }
     
