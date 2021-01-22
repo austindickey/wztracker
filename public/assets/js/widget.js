@@ -1,4 +1,6 @@
 require("dotenv").config()
+const moment = require("moment")
+
 const apiKey = process.env.apiKey
 const host = process.env.host
 
@@ -23,7 +25,15 @@ function getRecentMatches() {
     
     // making the call
     $.ajax(settings).done(function (response) {
-        console.log(response)
+        let data = response.matches[0]
+        console.log(data)
+
+        let endTime = data.utcEndSeconds
+        let d = new Date(0)
+        d.setUTCSeconds(endTime)
+        let test = moment(d).format('LLLL')
+
+        console.log(test)
     })
 
 }
