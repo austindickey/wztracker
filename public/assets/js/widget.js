@@ -4,6 +4,14 @@ const moment = require("moment")
 const apiKey = process.env.apiKey
 const host = process.env.host
 
+let recentAverages = {
+    "placementTotals" : [],
+    "killTotals" : [],
+    "deathTotals" : [],
+    "damageDoneTotals" : [],
+    "damageTakenTotals" : []
+}
+
 function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }
@@ -71,14 +79,73 @@ function getPlayerStats() {
         contracts.addClass("contracts")
         contracts.text("Contracts: " + formatNumber(stats.contracts))
 
-        let hr = $("<hr>")
-
         newUl.append(gamesPlayed, wins, topFive, topTen, topTwentyFive, kdRatio, kills, deaths, revives, contracts)
 
-        $("#stats").append(newUl, hr)
+        $("#stats").append(newUl)
 
     })
 
+}
+
+function getAverages(){
+    // calculating the averages
+    let placement = recentAverages.placementTotals.reduce((a, b) => a + b, 0)
+    placement = placement / 20
+
+    let kills = recentAverages.killTotals.reduce((a, b) => a + b, 0)
+    kills = kills / 20
+
+    let deaths = recentAverages.deathTotals.reduce((a, b) => a + b, 0)
+    deaths = deaths / 20
+
+    let damageDone = recentAverages.damageDoneTotals.reduce((a, b) => a + b, 0)
+    damageDone = damageDone / 20
+
+    let damageTaken = recentAverages.damageTakenTotals.reduce((a, b) => a + b, 0)
+    damageTaken = damageTaken / 20
+
+    let kd = kills / deaths
+
+    // printing to the screen
+    let newUl = $("<ul>")
+    newUl.addClass("recentAverages")
+
+    let placementTag = $("<li>")
+    placementTag.addClass("placement")
+    placementTag.text("Team Placement: " + placement)
+
+    let kdTag = $("<li>")
+    kdTag.addClass("kd")
+    kdTag.text("KD Ratio: " + Math.round((kd + Number.EPSILON) * 100) / 100)
+
+    let killsTag = $("<li>")
+    killsTag.addClass("kills")
+    killsTag.text("Kills: " + kills)
+
+    let deathsTag = $("<li>")
+    deathsTag.addClass("deaths")
+    deathsTag.text("Deaths: " + deaths)
+
+    let damageDoneTag = $("<li>")
+    damageDoneTag.addClass("damageDone")
+    damageDoneTag.text("Damage Done: " + formatNumber(damageDone))
+
+    let damageTakenTag = $("<li>")
+    damageTakenTag.addClass("damageTaken")
+    damageTakenTag.text("Damage Taken: " + formatNumber(damageTaken))
+
+    newUl.append(placementTag, kdTag, killsTag, deathsTag, damageDoneTag, damageTakenTag)
+
+    $("#averages").append(newUl)
+
+    // clearing the averages object of data
+    recentAverages = {
+        "placementTotals" : [],
+        "killTotals" : [],
+        "deathTotals" : [],
+        "damageDoneTotals" : [],
+        "damageTakenTotals" : []
+    }
 
 }
 
@@ -106,6 +173,12 @@ function getRecentMatches() {
         for (let i = 0; i < matches.length; i++) {
 
             let player = matches[i].playerStats
+
+            recentAverages.placementTotals.push(player.teamPlacement)
+            recentAverages.killTotals.push(player.kills)
+            recentAverages.deathTotals.push(player.deaths)
+            recentAverages.damageDoneTotals.push(player.damageDone)
+            recentAverages.damageTakenTotals.push(player.damageTaken)
 
             let endTime = matches[i].utcEndSeconds
             let date = new Date(0)
@@ -151,15 +224,19 @@ function getRecentMatches() {
 
         }
 
+        getAverages()
+
     })
 
 }
 
+// submit button
 $("#submit").on("click", function() {
     getPlayerStats()
-    getRecentMatches()
+    setTimeout(function(){ getRecentMatches() }, 2000)
 })
 
+// listening for the enter keypress
 $(document).ready(function(){
     $("#gamertag").keypress(function(e){
       if(e.keyCode==13)
