@@ -36,24 +36,24 @@ ul {
     margin-bottom: 30px;
 }
 
+input,
+select {
+    text-align: center;
+    text-align-last: center;
+}
+
 #submit {
     background-color: #fff;
+    margin:0 auto;
+    display:block;
 }
 
-.newsPics {
-    width: 100%;
-}
-
-.newsArticle a {
-    color: #539af7;
+.card-header {
+    text-align: center;
 }
 
 a:hover {
     color: #ec7748;
-}
-
-.newsArticle span {
-    font-style: italic;
 }
 
 @media(max-width: 1024px) {
